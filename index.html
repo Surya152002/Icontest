@@ -61,7 +61,7 @@
     <div class="container">
         <div class="content">
             <div class="dog-info" id="dogInfoContainer">
-                <form id="dogForm">
+                <form id="dogForm" style="display: none;">
                     <label for="dogId">Dog ID:</label>
                     <input type="text" id="dogIdInput">
                     <button type="submit">Submit</button>
@@ -97,20 +97,14 @@
 
         // Function to toggle input icon
         function toggleInputIcon() {
-            const dogInfoContainer = document.getElementById('dogInfoContainer');
             const dogForm = document.getElementById('dogForm');
-
-            dogInfoContainer.style.display = 'none';
-            dogForm.style.display = 'block';
+            dogForm.style.display = dogForm.style.display === 'none' ? 'block' : 'none';
         }
 
         // Function to toggle information icon
         function toggleInformationIcon() {
-            const dogForm = document.getElementById('dogForm');
             const dogInfoContainer = document.getElementById('dogInfoContainer');
-
-            dogForm.style.display = 'none';
-            dogInfoContainer.style.display = 'block';
+            dogInfoContainer.style.display = dogInfoContainer.style.display === 'none' ? 'block' : 'none';
         }
 
         // Add event listener to the form
