@@ -1,120 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dog Information</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Information</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .content {
-        background-color: #f2f2f2;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .icons-container {
-        position: fixed;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-    }
-    .icon {
-        display: block;
-        width: 40px;
-        height: 40px;
-        background-color: #4CAF50;
-        color: white;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        margin-bottom: 10px;
-        cursor: pointer;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    .icon:hover {
-        background-color: #45a049;
-    }
-    .dog-info {
-        display: none;
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .hidden {
-        display: none;
-    }
-</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .content {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .icons-container {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        .icon {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .icon:hover {
+            background-color: #45a049;
+        }
+        .dog-info {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <div class="content">
-        <div class="dog-info" id="dogInfoContainer">
-            <form id="dogForm">
-                <label for="dogId">Dog ID:</label>
-                <input type="text" id="dogIdInput">
-                <button type="submit">Submit</button>
-            </form>
+    <div class="container">
+        <div class="content">
+            <div class="dog-info" id="dogInfoContainer">
+                <form id="dogForm">
+                    <label for="dogId">Dog ID:</label>
+                    <input type="text" id="dogIdInput">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="icons-container">
-    <div class="icon" onclick="toggleInputIcon()">
-        <i class="fas fa-paw"></i>
+    <div class="icons-container">
+        <div class="icon" onclick="toggleInputIcon()">
+            <i class="fas fa-paw"></i>
+        </div>
+        <div class="icon" onclick="toggleInformationIcon()">
+            <i class="fas fa-info"></i>
+        </div>
     </div>
-    <div class="icon" onclick="toggleInformationIcon()">
-        <i class="fas fa-info"></i>
-    </div>
-</div>
 
-<script>
-    // Function to handle form submission
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        const dogId = document.getElementById('dogIdInput').value;
-        showDogInfo(dogId);
-    }
+    <script>
+        // Function to handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const dogId = document.getElementById('dogIdInput').value;
+            showDogInfo(dogId);
+        }
 
-    // Function to show dog information based on dog id
-    function showDogInfo(dogId) {
-        const dogInfo = document.getElementById('dogInfoContainer');
-        dogInfo.innerHTML = `Dog ID: ${dogId}<br>Information: Fetch from database`;
+        // Function to show dog information based on dog id
+        function showDogInfo(dogId) {
+            const dogInfo = document.getElementById('dogInfoContainer');
+            dogInfo.innerHTML = `Dog ID: ${dogId}<br>Information: Fetch from database`;
 
-        dogInfo.style.display = 'block';
-    }
+            dogInfo.style.display = 'block';
+        }
 
-    // Function to toggle input icon
-    function toggleInputIcon() {
-        const dogInfoContainer = document.getElementById('dogInfoContainer');
-        const dogForm = document.getElementById('dogForm');
+        // Function to toggle input icon
+        function toggleInputIcon() {
+            const dogInfoContainer = document.getElementById('dogInfoContainer');
+            const dogForm = document.getElementById('dogForm');
 
-        dogInfoContainer.classList.add('hidden');
-        dogForm.classList.remove('hidden');
-    }
+            dogInfoContainer.style.display = 'none';
+            dogForm.style.display = 'block';
+        }
 
-    // Function to toggle information icon
-    function toggleInformationIcon() {
-        const dogForm = document.getElementById('dogForm');
-        const dogInfoContainer = document.getElementById('dogInfoContainer');
+        // Function to toggle information icon
+        function toggleInformationIcon() {
+            const dogForm = document.getElementById('dogForm');
+            const dogInfoContainer = document.getElementById('dogInfoContainer');
 
-        dogForm.classList.add('hidden');
-        dogInfoContainer.classList.remove('hidden');
-    }
+            dogForm.style.display = 'none';
+            dogInfoContainer.style.display = 'block';
+        }
 
-    // Add event listener to the form
-    document.getElementById('dogForm').addEventListener('submit', handleFormSubmit);
-</script>
+        // Add event listener to the form
+        document.getElementById('dogForm').addEventListener('submit', handleFormSubmit);
+    </script>
 </body>
 </html>
