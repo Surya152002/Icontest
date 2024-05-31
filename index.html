@@ -1,26 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Info Tracker</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Information</title>
+<style>
+    .icon {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-color: lightblue;
+        margin: 10px;
+        text-align: center;
+        line-height: 50px;
+        cursor: pointer;
+    }
+    .dog-info {
+        display: none;
+        background-color: lightgray;
+        padding: 10px;
+        margin-top: 5px;
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dog Info Tracker</h1>
-        <div class="input-section">
-            <label for="sessionId">Session ID:</label>
-            <input type="text" id="sessionId">
-            <label for="numberOfRuns">Number of Runs:</label>
-            <input type="number" id="numberOfRuns">
-            <label for="dogId">Dog ID:</label>
-            <input type="text" id="dogId">
-            <button id="createIconButton">Create Icon</button>
-        </div>
-        <div class="icon-section" id="iconSection"></div>
-    </div>
+<div id="iconsContainer"></div>
+<div id="dogInfoContainer"></div>
 
-    <script src="script.js"></script>
+<script>
+    // Function to create an icon with given dog id
+    function createIcon(dogId) {
+        const icon = document.createElement('div');
+        icon.className = 'icon';
+        icon.textContent = dogId;
+        icon.addEventListener('click', () => showDogInfo(dogId));
+        return icon;
+    }
+
+    // Function to show dog information based on dog id
+    function showDogInfo(dogId) {
+        const dogInfo = document.getElementById('dogInfoContainer');
+        dogInfo.innerHTML = `Dog ID: ${dogId}<br>Information: Fetch from database`;
+
+        dogInfo.style.display = 'block';
+    }
+
+    // Function to get input and create icons
+    function createIcons() {
+        const sessionId = prompt('Enter Session ID:');
+        const numberOfRuns = prompt('Enter Number of Runs:');
+        const dogId = prompt('Enter Dog ID:');
+
+        const iconsContainer = document.getElementById('iconsContainer');
+        iconsContainer.innerHTML = '';
+
+        const icon1 = createIcon(dogId);
+        const icon2 = createIcon('Search');
+
+        iconsContainer.appendChild(icon1);
+        iconsContainer.appendChild(icon2);
+    }
+
+    createIcons();
+</script>
 </body>
 </html>
