@@ -21,19 +21,28 @@
         padding: 10px;
         margin-top: 5px;
     }
+    .hidden {
+        display: none;
+    }
 </style>
 </head>
 <body>
 <div id="iconsContainer"></div>
-<div id="dogInfoContainer"></div>
+<div id="dogInfoContainer" class="hidden">
+    <form id="dogForm">
+        <label for="dogId">Dog ID:</label>
+        <input type="text" id="dogIdInput">
+        <button type="submit">Submit</button>
+    </form>
+</div>
 
 <script>
     // Function to create an icon with given dog id
-    function createIcon(dogId) {
+    function createIcon(text, onClick) {
         const icon = document.createElement('div');
         icon.className = 'icon';
-        icon.textContent = dogId;
-        icon.addEventListener('click', () => showDogInfo(dogId));
+        icon.textContent = text;
+        icon.addEventListener('click', onClick);
         return icon;
     }
 
@@ -45,23 +54,35 @@
         dogInfo.style.display = 'block';
     }
 
-    // Function to get input and create icons
-    function createIcons() {
-        const sessionId = prompt('Enter Session ID:');
-        const numberOfRuns = prompt('Enter Number of Runs:');
-        const dogId = prompt('Enter Dog ID:');
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        const dogId = document.getElementById('dogIdInput').value;
+        showDogInfo(dogId);
+    }
 
+    // Function to initialize icons
+    function initializeIcons() {
         const iconsContainer = document.getElementById('iconsContainer');
         iconsContainer.innerHTML = '';
 
-        const icon1 = createIcon(dogId);
-        const icon2 = createIcon('Search');
+        const icon1 = createIcon('Input', () => {
+            document.getElementById('dogInfoContainer').classList.add('hidden');
+            document.getElementById('dogForm').classList.remove('hidden');
+        });
+
+        const icon2 = createIcon('Information', () => {
+            document.getElementById('dogForm').classList.add('hidden');
+            document.getElementById('dogInfoContainer').classList.remove('hidden');
+        });
 
         iconsContainer.appendChild(icon1);
         iconsContainer.appendChild(icon2);
+
+        document.getElementById('dogForm').addEventListener('submit', handleFormSubmit);
     }
 
-    createIcons();
+    initializeIcons();
 </script>
 </body>
 </html>
