@@ -52,8 +52,26 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .hidden {
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            overflow: auto;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            position: relative;
         }
     </style>
 </head>
@@ -71,11 +89,22 @@
     </div>
 
     <div class="icons-container">
-        <div class="icon" onclick="toggleInputIcon()">
+        <div class="icon" onclick="openForm()">
             <i class="fas fa-paw"></i>
         </div>
         <div class="icon" onclick="toggleInformationIcon()">
             <i class="fas fa-info"></i>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeForm()">&times;</span>
+            <form id="dogFormPopup">
+                <label for="dogId">Dog ID:</label>
+                <input type="text" id="dogIdInputPopup">
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </div>
 
@@ -95,16 +124,14 @@
             dogInfo.style.display = 'block';
         }
 
-        // Function to toggle input icon
-        function toggleInputIcon() {
-            const dogForm = document.getElementById('dogForm');
-            dogForm.style.display = dogForm.style.display === 'none' ? 'block' : 'none';
+        // Function to open the form pop-up
+        function openForm() {
+            document.getElementById('myModal').style.display = 'block';
         }
 
-        // Function to toggle information icon
-        function toggleInformationIcon() {
-            const dogInfoContainer = document.getElementById('dogInfoContainer');
-            dogInfoContainer.style.display = dogInfoContainer.style.display === 'none' ? 'block' : 'none';
+        // Function to close the form pop-up
+        function closeForm() {
+            document.getElementById('myModal').style.display = 'none';
         }
 
         // Add event listener to the form
